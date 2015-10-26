@@ -1,0 +1,75 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    
+}
+
+/* New invoice */
+.new-invoice{
+    margin:0;
+    padding:0;
+}
+.table-head, .table-body, .table-footer {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.table-head, .table-footer {
+    font-weight: bold;
+    border-top:1px solid #ccc;
+}
+
+.table-body {
+    border-top:1px solid #ddd;
+}
+
+    .table-head div div, .table-body div div, .table-footer div div {
+        padding: 12px 0;
+    }
+    .table-head .row, .table-body .row, .table-footer .row{
+        padding:0;
+        margin:0;
+    }
+    .new-invoice-lines{
+            margin: 12px 0;
+    }
+
+    .all-invoices{
+        margin:0;
+        padding:0;
+        list-style:none;
+    }
+    .all-invoices > li{
+        display:block;
+        border-bottom:2px solid #aaa;
+        margin:2px;
+        padding:2px;
+    }
+    .all-invoices li ul{
+        margin:0;
+        padding:0;
+        list-style:none;
+    }
+    .all-invoices li ul li{
+        border-top:1px solid #ccc;
+    }

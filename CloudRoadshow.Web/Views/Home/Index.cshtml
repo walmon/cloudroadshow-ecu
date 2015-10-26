@@ -1,0 +1,153 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-6 col-xs-12">
+        <h2>Cloud Roadshow Ecuador</h2>
+        <p>Bienvenido a la capa web del sistema de facturas del <strong>Cloud Roadshow Ecuador</strong>.</p>
+        <p>¡Aquí podrá interactuar con los conferencistas y sus procesos en tiempo real!</p>
+
+    </div>
+    <div class="col-md-6 col-xs-12">
+        <div>
+            <h3>Arquitectura web</h3>
+            <img src="~/Content/images/arquitectura roadshow.png" width="250" />
+        </div>
+    </div>
+    <hr />
+</div>
+<div class="row" ng-app="app" ng-controller="InvoiceCtrl as vm">
+
+    <div class="col-md-6">
+        <h2>Nueva factura</h2>
+        <form ng-submit="vm.save(vm.newInvoice)">
+            <div class="row">
+                <div class="col col-sm-12 form-group">
+                    <label>Cliente</label>
+                    <input class="form-control" placeholder="Cliente" ng-model="vm.newInvoice.customer" ng-required="true"/>
+                </div>
+                <div class="col col-sm-8">
+                    <label>Dirección</label>
+                    <input class="form-control" placeholder="Dirección" ng-model="vm.newInvoice.address" ng-required="true" />
+                </div>
+                <div class="col col-sm-4">
+                    <label>Tel</label>
+                    <input class="form-control" placeholder="Tel" ng-model="vm.newInvoice.tel" ng-required="true" />
+                </div>
+            </div>
+            <div class="row new-invoice-lines">
+                <div class="col col-sm-12">
+                    <ul class="new-invoice">
+                        <li class="table-head">
+                            <div class="row">
+                                <div class="col col-sm-2">
+                                    CANT
+                                </div>
+                                <div class="col col-sm-6">
+                                    DESCRIPCION
+                                </div>
+                                <div class="col col-sm-4">
+                                    MONTO
+                                </div>
+                            </div>
+                        </li>
+                        <li class="table-body" ng-repeat="line in vm.newInvoice.lines">
+                            <div class="row">
+                                <div class="col col-sm-2">
+                                    {{line.cant}}
+                                </div>
+                                <div class="col col-sm-6">
+                                    {{line.description}}
+                                </div>
+                                <div class="col col-sm-4">
+                                    ${{line.amount}}
+                                </div>
+                            </div>
+                        </li>
+                        <li class="table-footer">
+                            <div class="row">
+                                <div class="col col-sm-2">
+
+                                </div>
+                                <div class="col col-sm-6">
+
+                                </div>
+                                <div class="col col-sm-4">
+                                    {{vm.newInvoice.total}}
+                                </div>
+                            </div>
+                        </li>
+                        <li class="table-body">
+                            <div class="row">
+                                <div class="col col-sm-2">
+                                    <input class="form-control" type="number" placeholder="Cant" ng-model="vm.newLine.cant" />
+                                </div>
+                                <div class="col col-sm-6">
+                                    <input class="form-control" placeholder="Descripción" ng-model="vm.newLine.description" />
+                                </div>
+                                <div class="col col-sm-4">
+                                    <input class="form-control" type="number" placeholder="Monto US$" ng-model="vm.newLine.amount" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-sm-2">
+                                    
+                                </div>
+                                <div class="col col-sm-6">
+                                    
+                                </div>
+                                <div class="col col-sm-4">
+                                    <button type="button" class="btn btn-default" ng-click="vm.addLine(vm.newLine)">Agregar línea</button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                @*<div class="col col-sm-12">
+                        <label>Nueva línea</label>
+                        <div class="row">
+                            <div class="col col-sm-12">
+                                <div class="col col-sm-2 ">
+
+                                </div>
+                                <div class="col col-sm-6">
+
+                                </div>
+                                <div class="col col-sm-4">
+
+                                </div>
+                            </div>
+                            <div class="col col-sm-12">
+
+                            </div>
+                        </div>
+                    </div>*@
+            </div>
+            <div class="row">
+                <div class="col col-sm-12">
+                    <hr />
+                    <button class="btn btn-default" type="submit">Crear</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <h2>Facturas</h2>
+        <ul class="all-invoices" ng-show="vm.invoices">
+            <li ng-repeat="invoice in vm.invoices">
+                <p>Cliente: {{invoice.customer}}</p>
+                <p>Dirección: {{invoice.address}}</p>
+                <p>Tel: {{invoice.tel}}</p>
+                <ul>
+                    <li ng-repeat="line in invoice.lines">
+                        {{line.cant}} - {{line.description}}  - {{line.amount}}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <p ng-show="!vm.invoices || vm.invoices.lenght===0">
+            No hay facturas para mostrar
+        </p>
+    </div>
+</div>
