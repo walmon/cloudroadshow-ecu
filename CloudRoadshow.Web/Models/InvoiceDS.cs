@@ -28,7 +28,9 @@ namespace CloudRoadshow.Web.Models
             DocumentCollection documentCollection = GetOrCreateCollectionAsync(database.SelfLink,
                 InvoicesCol).Result;
 
-            client.CreateDocumentAsync(documentCollection.DocumentsLink, invoice);
+            client.CreateDocumentAsync(
+                documentCollection.DocumentsLink, 
+                invoice);
         }
 
         public IEnumerable<Invoice> GetAll()
